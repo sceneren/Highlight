@@ -24,6 +24,7 @@ public class HighLightView extends FrameLayout {
     public HighLightView(Context context) {
         super(context);
         setWillNotDraw(false);
+        setLayerType(LAYER_TYPE_SOFTWARE, null); // 关闭硬件加速
     }
 
     public void setMaskColor(int maskColor) {
@@ -82,6 +83,7 @@ public class HighLightView extends FrameLayout {
 
         // 准备工作
         int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
+
         // 绘制背景色
         canvas.drawColor(mMaskColor);
 
@@ -91,6 +93,7 @@ public class HighLightView extends FrameLayout {
                 viewInfo.drawLightShape(canvas);
             }
         }
+
         canvas.restoreToCount(saved);
     }
 }

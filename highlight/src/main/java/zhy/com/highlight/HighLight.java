@@ -25,20 +25,47 @@ public class HighLight {
     private HighLightView mHighLightView;
 
     private boolean isShowing;// 是否正在显示
+    private View.OnClickListener mOnClickListener; // 为了防止点击事件穿透，默认给 HighLightView设置一个点击事件
 
     public HighLight(@NonNull Activity activity) {
         mDecorView = activity.getWindow().getDecorView();
 
         mHighLightView = new HighLightView(activity);
+        mHighLightView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mOnClickListener) {
+                    mOnClickListener.onClick(v);
+                }
+            }
+        });
     }
 
-    public void attachViewInfo(int viewId, LightShape lightShape, @NonNull View hintView, HintMargin hintRect, List<SingleViewInfo> viewInfoList) {
+    /**
+     * 添加 单条，待添加的信息
+     *
+     * @param viewId     被高亮的控件
+     * @param lightShape 高亮的形状
+     * @param hintView   提示信息的控件
+     * @param hintRect   提示信息的位置信息
+     * @return 单条信息，之后放入show中使用
+     */
+    public SingleViewInfo attachViewInfo(int viewId, LightShape lightShape, @NonNull View hintView, HintMargin hintRect) {
         View lightView = mDecorView.findViewById(viewId);
-        attachViewInfo(lightView, lightShape, hintView, hintRect, viewInfoList);
+        return attachViewInfo(lightView, lightShape, hintView, hintRect);
     }
 
-    public void attachViewInfo(@NonNull View lightView, LightShape lightShape, @NonNull View hintView, HintMargin hintRect, List<SingleViewInfo> viewInfoList) {
-        viewInfoList.add(new SingleViewInfo(mDecorView, lightView, lightShape, hintView, hintRect));
+    /**
+     * 添加 单条，待添加的信息
+     *
+     * @param lightView     被高亮的控件
+     * @param lightShape 高亮的形状
+     * @param hintView   提示信息的控件
+     * @param hintRect   提示信息的位置信息
+     * @return 单条信息，之后放入show中使用
+     */
+    public SingleViewInfo attachViewInfo(@NonNull View lightView, LightShape lightShape, @NonNull View hintView, HintMargin hintRect) {
+        return new SingleViewInfo(mDecorView, lightView, lightShape, hintView, hintRect);
     }
 
     /**
@@ -100,8 +127,12 @@ public class HighLight {
     }
 
     public void setOnClickListener(View.OnClickListener listener) {
+        this.mOnClickListener = listener;
+    }
+
+    public void setOnTouchListener(View.OnTouchListener listener) {
         if (null != mHighLightView) {
-            mHighLightView.setOnClickListener(listener);
+            mHighLightView.setOnTouchListener(listener);
         }
     }
 }

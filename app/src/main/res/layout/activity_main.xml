@@ -3,48 +3,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btn_show_known_tip"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_know"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_margin="10dp"
-        android:onClick="showKnownTipView"
-        android:text="showKnownTip" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_show_next_known_tip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/btn_show_known_tip"
-        android:layout_margin="10dp"
-        android:onClick="showNextKnownTipView"
-        android:text="showNextKnownTip" />
+        <Button
+            android:id="@+id/btn_show_known_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:text="showKnowAll"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/btn_show_tip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
-        android:onClick="showTipView"
-        android:text="showTip" />
+        <Button
+            android:id="@+id/btn_show_known_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
+            android:text="showKnowTips"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_show_next_tip"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/ll_normal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/btn_show_tip"
-        android:layout_margin="10dp"
-        android:onClick="showNextTipView"
-        android:text="showNextTip" />
+        android:layout_below="@id/ll_know"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_show_normal_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:text="showNormalAll"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_show_normal_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:text="showNormalTips"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_show_normal_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="showNormalOther"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_show_next_known_tip"
+        android:layout_below="@id/ll_normal"
         android:entries="@array/entities" />
 
     <Button
