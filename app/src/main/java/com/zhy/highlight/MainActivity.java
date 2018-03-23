@@ -151,8 +151,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**********************************  一次性，显示普通所有布局；模式为1+2+1 ***********************************************/
-
+    /**********************************  一次性，显示普通所有布局 ***********************************************/
     private void showNormalTipsAll(View view) {
         mHighLight = new HighLight(MainActivity.this);
 
