@@ -3,6 +3,7 @@ package zhy.com.highlight.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import java.util.List;
@@ -16,7 +17,9 @@ import zhy.com.highlight.helper.SingleViewInfo;
  * @version 1.0.0
  */
 public class HighLightView extends FrameLayout {
-    private int mMaskColor = 0xCC000000; // 背景颜色
+     private int mMaskColor = 0xCC000000; // 背景颜色
+//    private int mMaskColor = 0xbb222222; // 背景颜色
+
     private boolean isNextShow; // 是否添加了数据，准备下次绘制
 
     private List<SingleViewInfo> mViewInfoList; // 每次绘制的内容
@@ -59,6 +62,7 @@ public class HighLightView extends FrameLayout {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
+        Log.v("xxx-", "onLayout");
         if (changed || isNextShow) {
             updateTipPos();
 
@@ -80,6 +84,7 @@ public class HighLightView extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas); // 内部啥也没有调用
+        Log.v("xxx-", "onDraw");
 
         // 准备工作
         int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);

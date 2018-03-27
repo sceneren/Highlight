@@ -1,9 +1,11 @@
 package zhy.com.highlight;
 
 import android.app.Activity;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import java.util.Arrays;
@@ -27,6 +29,8 @@ public class HighLight {
     private boolean isShowing;// 是否正在显示
     private View.OnClickListener mOnClickListener; // 为了防止点击事件穿透，默认给 HighLightView设置一个点击事件
 
+    private View.OnClickListener mOnLayoutFinishedListener;
+
     public HighLight(@NonNull Activity activity) {
         mDecorView = activity.getWindow().getDecorView();
 
@@ -36,6 +40,21 @@ public class HighLight {
             public void onClick(View v) {
                 if (null != mOnClickListener) {
                     mOnClickListener.onClick(v);
+                }
+            }
+        });
+
+        mDecorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    mDecorView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                } else {
+                    mDecorView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+
+                if (null != mOnLayoutFinishedListener) {
+                    mOnLayoutFinishedListener.onClick(null);
                 }
             }
         });
@@ -58,7 +77,7 @@ public class HighLight {
     /**
      * 添加 单条，待添加的信息
      *
-     * @param lightView     被高亮的控件
+     * @param lightView  被高亮的控件
      * @param lightShape 高亮的形状
      * @param hintView   提示信息的控件
      * @param hintRect   提示信息的位置信息
@@ -97,9 +116,11 @@ public class HighLight {
                     isShowing = true;
 
                     mHighLightView.addViewForTip(viewInfoList);
+                    mHighLightView.invalidate();
                 }
             } else {
                 mHighLightView.addViewForTip(viewInfoList);
+                mHighLightView.invalidate();
             }
         }
     }
@@ -134,5 +155,9 @@ public class HighLight {
         if (null != mHighLightView) {
             mHighLightView.setOnTouchListener(listener);
         }
+    }
+
+    public void setOnLayoutFinishedListener(View.OnClickListener listener) {
+        this.mOnLayoutFinishedListener = listener;
     }
 }

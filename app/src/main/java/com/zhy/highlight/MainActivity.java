@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 showNormalOther(v);
             }
         });
+
+        getSupportFragmentManager().beginTransaction().add(R.id.main_frame_layout, new TestFragment()).commit();
     }
 
     /**********************************  一次性，显示“知道” 所有布局 ***********************************************/

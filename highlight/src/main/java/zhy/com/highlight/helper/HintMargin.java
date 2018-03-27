@@ -94,23 +94,23 @@ public abstract class HintMargin {
     }
 
     /*********************************************** 子类调用的方法 *****************************************************/
-    void setTopMargin(int topMargin) {
+    protected void setTopMargin(int topMargin) {
         this.topMargin = topMargin;
     }
 
-    void setLeftMargin(int leftMargin) {
+    protected void setLeftMargin(int leftMargin) {
         this.leftMargin = leftMargin;
     }
 
-    void setRightMargin(int rightMargin) {
+    protected void setRightMargin(int rightMargin) {
         this.rightMargin = rightMargin;
     }
 
-    void setBottomMargin(int bottomMargin) {
+    protected void setBottomMargin(int bottomMargin) {
         this.bottomMargin = bottomMargin;
     }
 
-    void setGravity(int gravity) {
+    protected void setGravity(int gravity) {
         this.gravity = gravity;
     }
 }
