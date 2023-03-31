@@ -3,7 +3,7 @@ package zhy.com.highlight.helper;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import zhy.com.highlight.view.HighLightView;

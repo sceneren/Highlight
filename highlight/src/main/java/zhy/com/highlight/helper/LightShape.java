@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 /**
  * 高亮的形状

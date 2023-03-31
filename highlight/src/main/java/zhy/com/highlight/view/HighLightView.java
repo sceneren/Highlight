@@ -2,7 +2,7 @@ package zhy.com.highlight.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.widget.FrameLayout;
 
