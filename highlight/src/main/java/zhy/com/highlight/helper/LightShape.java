@@ -22,7 +22,7 @@ public abstract class LightShape {
     public static final int OVAL = 1; // 椭圆
     public static final int RECT = 2; // 矩形
 
-    Paint mPaint; // 绘制空洞的画笔
+    public Paint mPaint; // 绘制空洞的画笔
 
     public LightShape() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
